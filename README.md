@@ -26,17 +26,16 @@
 - **html2canvas & jsPDF** (For the PDF export feature)
 
 ### Backend (Server & Logic)
-- **Java Spring Boot**
+- **Node.js & Express.js**
 - **Google Gemini API** (`gemini-2.5-flash` model for both text and image processing)
-- **Spring Data JPA & H2 Database** (For storing user profiles and scan histories)
+- **Prisma ORM & SQLite Database** (For storing user profiles and scan histories)
 
 ---
 
 ## 🚀 How to Run Locally
 
 ### Prerequisites
-- **Node.js** (v16 or newer)
-- **Java Development Kit (JDK)** (v17)
+- **Node.js** (v14 or newer)
 - **Google Gemini API Key**
 
 ### 1. Clone the Repository
@@ -45,16 +44,23 @@ git clone https://github.com/your-username/food-allergy-scanner.git
 cd food-allergy-scanner
 ```
 
-### 2. Setup the Backend (Spring Boot)
+### 2. Setup the Backend (Node.js/Express)
 1. Open the `backend` folder.
-2. Open the `src/main/resources/application.properties` file.
-3. Insert your Gemini API Key:
-   ```ini
-   gemini.api.key=YOUR_API_KEY_HERE
+2. Create a `.env` file (or edit the existing one).
+3. Insert your Gemini API Key and database configuration:
+   ```env
+   PORT=8080
+   GEMINI_API_KEY=YOUR_API_KEY_HERE
+   DATABASE_URL="file:./data/allergy.db"
    ```
-4. Run the application using Maven:
+4. Install dependencies and push the database schema:
    ```bash
-   ./mvnw spring-boot:run
+   npm install
+   npx prisma db push
+   ```
+5. Start the server:
+   ```bash
+   npm start
    ```
    *The backend will run on `http://localhost:8080`*
 

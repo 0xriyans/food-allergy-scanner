@@ -1,0 +1,23 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model UserProfile {
+  id        Int      @id @default(autoincrement())
+  username  String
+  email     String
+  allergies String   // Disimpan sebagai JSON string karena SQLite tidak punya array natively
+}
+
+model ScanHistory {
+  id         Int      @id @default(autoincrement())
+  userId     Int
+  mode       String
+  jsonResult String
+  scanDate   DateTime @default(now())
+}
