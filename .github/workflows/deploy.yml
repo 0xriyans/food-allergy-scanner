@@ -30,8 +30,13 @@ jobs:
             # Buat file .env secara otomatis
             echo "Menyiapkan file .env..."
             echo "PORT=8080" > .env
-            echo "DATABASE_URL=\"file:./data/allergy.db\"" >> .env
+            echo "DATABASE_URL=\"file:./allergy.db\"" >> .env
             echo "GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}" >> .env
+            
+            # Setup Database Prisma
+            echo "Setting up Database..."
+            npx prisma generate
+            npx prisma db push
             
             # Update dependencies & Build Frontend (React/Vite)
             echo "Updating Frontend..."
