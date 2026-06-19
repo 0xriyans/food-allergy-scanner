@@ -234,7 +234,7 @@ function App() {
 
   const fetchProfile = async () => {
     try {
-      const res = await fetch('http://157.230.249.51:81/api/profile?userId=1');
+      const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8080/api'}/profile?userId=1');
       const data = await res.json();
       
       // Migrate old string values to keys if necessary
@@ -258,7 +258,7 @@ function App() {
 
   const fetchHistory = async () => {
     try {
-      const res = await fetch('http://157.230.249.51:81/api/history?userId=1');
+      const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8080/api'}/history?userId=1');
       const data = await res.json();
       setHistories(data);
     } catch (err) {
@@ -268,7 +268,7 @@ function App() {
 
   const saveProfile = async () => {
     try {
-      const res = await fetch('http://157.230.249.51:81/api/profile', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8080/api'}/profile', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ id: 1, allergies: userAllergies })

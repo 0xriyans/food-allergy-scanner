@@ -37,6 +37,10 @@ jobs:
             echo "Updating Frontend..."
             cd ../frontend
             npm install
+            
+            echo "Menyiapkan file .env frontend..."
+            echo "VITE_API_URL=http://157.230.249.51:81/api" > .env
+            
             npm run build
             
             # Restart backend di PM2
